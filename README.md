@@ -24,11 +24,11 @@ The server runs at `http://localhost:3000` by default.
 
 ## Scripts
 
-| Command         | Description                                  |
-| --------------- | -------------------------------------------- |
-| `npm run dev`   | Start the dev server with auto-reload (tsx)  |
-| `npm run build` | Compile TypeScript to `dist/`                |
-| `npm start`     | Run the compiled build                       |
+| Command         | Description                                 |
+| --------------- | ------------------------------------------- |
+| `npm run dev`   | Start the dev server with auto-reload (tsx) |
+| `npm run build` | Compile TypeScript to `dist/`               |
+| `npm start`     | Run the compiled build                      |
 
 ## Project Structure
 
