@@ -27,7 +27,7 @@ jobs:
             exit 1
           fi
 
-   check:
+  check:
     runs-on: ubuntu-latest
     env:
       DATABASE_URL: postgresql://user:pass@localhost:5432/db
