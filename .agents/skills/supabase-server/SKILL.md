@@ -56,6 +56,7 @@ Environment variables are auto-injected by the platform — zero config. **All i
 
 ```ts
 // withSupabase — high-level wrapper
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 
 export default {
@@ -64,15 +65,30 @@ export default {
     return Response.json(data);
   }),
 };
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+
+export default {
+  fetch: withSupabase({ auth: 'user' }, async (_req, ctx) => {
+    const { data } = await ctx.supabase.from('todos').select()
+    return Response.json(data)
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ```ts
 // createSupabaseContext — returns { data, error } for custom response control
+<<<<<<< HEAD
 import { createSupabaseContext } from "npm:@supabase/server@1";
+=======
+import { createSupabaseContext } from 'npm:@supabase/server@1'
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 
 export default {
   fetch: async (req: Request) => {
     const { data: ctx, error } = await createSupabaseContext(req, {
+<<<<<<< HEAD
       auth: "user",
     });
     if (error) {
@@ -85,6 +101,20 @@ export default {
     return Response.json(data);
   },
 };
+=======
+      auth: 'user',
+    })
+    if (error) {
+      return Response.json(
+        { message: error.message, code: error.code },
+        { status: error.status },
+      )
+    }
+    const { data } = await ctx.supabase.from('todos').select()
+    return Response.json(data)
+  },
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ### Cloudflare Workers
@@ -92,6 +122,7 @@ export default {
 Requires `nodejs_compat` compatibility flag in `wrangler.toml`, or pass env overrides via the `env` config option. See `docs/environment-variables.md`.
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "@supabase/server";
 
 export default {
@@ -100,6 +131,16 @@ export default {
     return Response.json(data);
   }),
 };
+=======
+import { withSupabase } from '@supabase/server'
+
+export default {
+  fetch: withSupabase({ auth: 'user' }, async (_req, ctx) => {
+    const { data } = await ctx.supabase.from('todos').select()
+    return Response.json(data)
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ### Hono
@@ -116,15 +157,24 @@ curl --fail -o src/lib/supabase-middleware.ts \
 ```
 
 ```ts
+<<<<<<< HEAD
 import { Hono } from "hono";
 import { withRequiredClaims } from "@supabase/server/middleware/required-claims";
 import { withSupabaseClient } from "@supabase/server/middleware/client";
 
 import { toHono } from "./lib/supabase-middleware.js";
+=======
+import { Hono } from 'hono'
+import { withRequiredClaims } from '@supabase/server/middleware/required-claims'
+import { withSupabaseClient } from '@supabase/server/middleware/client'
+
+import { toHono } from './lib/supabase-middleware.js'
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 
 // `withRequiredClaims` answers 401 to any request without a valid user JWT,
 // so the routes below only run for signed-in callers.
 const app = new Hono()
+<<<<<<< HEAD
   .use("*", toHono([withRequiredClaims(), withSupabaseClient()]))
   .get("/todos", async (c) => {
     const { data, error } = await c.var.supabase.from("todos").select();
@@ -134,6 +184,17 @@ const app = new Hono()
   .get("/me", (c) => c.json({ id: c.var.jwtClaims.sub }));
 
 export default { fetch: app.fetch };
+=======
+  .use('*', toHono([withRequiredClaims(), withSupabaseClient()]))
+  .get('/todos', async (c) => {
+    const { data, error } = await c.var.supabase.from('todos').select()
+    if (error) return c.json({ error: error.message }, 500)
+    return c.json(data)
+  })
+  .get('/me', (c) => c.json({ id: c.var.jwtClaims.sub }))
+
+export default { fetch: app.fetch }
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 Register the bridge with `.use()` in the same chain as the routes it gates. Hono applies middleware only to routes added after it. For browser callers, compose `withCors` from `@supabase/middleware/cors` ahead of the gate. On Deno and Supabase Edge Functions, import `hono`, `@supabase/middleware`, and `@supabase/server@1/middleware/*` with the `npm:` specifier.
@@ -156,6 +217,7 @@ The entries contribute flat keys, so handlers read `c.var.supabase` and `c.var.j
 Existing code may still import the adapter. Recognize it, and migrate it with the table above. The adapter handles no CORS; it relies on `hono/cors`. See `docs/adapters/hono.md`.
 
 ```ts
+<<<<<<< HEAD
 import { Hono } from "hono";
 import { withSupabase } from "@supabase/server/adapters/hono";
 
@@ -169,6 +231,21 @@ app.get("/todos", async (c) => {
 });
 
 export default app;
+=======
+import { Hono } from 'hono'
+import { withSupabase } from '@supabase/server/adapters/hono'
+
+const app = new Hono()
+app.use('*', withSupabase({ auth: 'user' }))
+
+app.get('/todos', async (c) => {
+  const { supabase } = c.var.supabaseContext
+  const { data } = await supabase.from('todos').select()
+  return c.json(data)
+})
+
+export default app
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 </details>
@@ -179,12 +256,20 @@ For Next.js / SvelteKit / Remix, **compose `@supabase/server` with [`@supabase/s
 
 ```ts
 // Key imports for building the adapter
+<<<<<<< HEAD
 import { createServerClient } from "@supabase/ssr";
+=======
+import { createServerClient } from '@supabase/ssr'
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 import {
   verifyCredentials,
   createContextClient,
   createAdminClient,
+<<<<<<< HEAD
 } from "@supabase/server/core";
+=======
+} from '@supabase/server/core'
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ### Server-to-server (secret key auth)
@@ -194,6 +279,7 @@ For internal services, cron jobs, or automation calling your Edge Function. The 
 **Edge Function (Deno):**
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 
 // Only accept the "automations" named secret key
@@ -206,11 +292,26 @@ export default {
     return Response.json({ success: true, data });
   }),
 };
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+
+// Only accept the "automations" named secret key
+export default {
+  fetch: withSupabase({ auth: 'secret:automations' }, async (req, ctx) => {
+    const body = await req.json()
+    const { data } = await ctx.supabaseAdmin
+      .from('scheduled_tasks')
+      .insert({ name: body.taskName, scheduled_at: body.scheduledAt })
+    return Response.json({ success: true, data })
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 **Caller (external service):**
 
 ```ts
+<<<<<<< HEAD
 await fetch("https://<project>.supabase.co/functions/v1/my-function", {
   method: "POST",
   headers: {
@@ -222,6 +323,19 @@ await fetch("https://<project>.supabase.co/functions/v1/my-function", {
     scheduledAt: new Date().toISOString(),
   }),
 });
+=======
+await fetch('https://<project>.supabase.co/functions/v1/my-function', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    apikey: 'sb_secret_automations_...', // the named secret key
+  },
+  body: JSON.stringify({
+    taskName: 'cleanup',
+    scheduledAt: new Date().toISOString(),
+  }),
+})
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 Bare `auth: 'secret'` matches only the `default` key. Use `auth: 'secret:name'` to require a specific named key, or `auth: 'secret:*'` to accept any secret key in the set.
@@ -231,17 +345,30 @@ Bare `auth: 'secret'` matches only the `default` key. Use `auth: 'secret:name'` 
 `audience` and `issuer` check the `aud` and `iss` claims of a `user`-mode token. Each takes a string or an array. A token without the claim, or with a value outside the list, is rejected with `INVALID_JWT`. Set `issuer: fromSupabaseUrl(url)` when one JWKS could be shared across projects or services. Supabase Auth sets `aud` to `authenticated`, so `audience` only matters for tokens from a custom issuer. Both options exist on `withSupabase`, `verifyAuth`, `verifyCredentials`, `withClaims`, and `withRequiredClaims`.
 
 ```ts
+<<<<<<< HEAD
 import { fromSupabaseUrl, withSupabase } from "npm:@supabase/server@1";
+=======
+import { fromSupabaseUrl, withSupabase } from 'npm:@supabase/server@1'
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 
 export default {
   fetch: withSupabase(
     {
+<<<<<<< HEAD
       auth: "user",
       issuer: fromSupabaseUrl(Deno.env.get("SUPABASE_URL")!),
     },
     async (req, ctx) => Response.json({ user: ctx.userClaims })
   ),
 };
+=======
+      auth: 'user',
+      issuer: fromSupabaseUrl(Deno.env.get('SUPABASE_URL')!),
+    },
+    async (req, ctx) => Response.json({ user: ctx.userClaims }),
+  ),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ## When to use `auth: 'none'`
@@ -275,6 +402,7 @@ verify_jwt = false  # called with secret key, not a user JWT
 **Called function** (`supabase/functions/process-order/index.ts`):
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 
 export default {
@@ -289,11 +417,28 @@ export default {
     return Response.json(data);
   }),
 };
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+
+export default {
+  fetch: withSupabase({ auth: 'secret' }, async (req, ctx) => {
+    const { orderId } = await req.json()
+    const { data } = await ctx.supabaseAdmin
+      .from('orders')
+      .update({ status: 'processing' })
+      .eq('id', orderId)
+      .select()
+      .single()
+    return Response.json(data)
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 **Calling function** (`supabase/functions/checkout/index.ts`):
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 
 export default {
@@ -312,6 +457,26 @@ export default {
     return Response.json(data);
   }),
 };
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+
+export default {
+  fetch: withSupabase({ auth: 'user' }, async (req, ctx) => {
+    const { orderId } = await req.json()
+
+    // Calls process-order with the secret key automatically
+    const { data, error } = await ctx.supabaseAdmin.functions.invoke(
+      'process-order',
+      { body: { orderId } },
+    )
+
+    if (error) {
+      return Response.json({ error: error.message }, { status: 500 })
+    }
+    return Response.json(data)
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ### Calling from database with pg_net
@@ -371,6 +536,7 @@ supabase secrets set STRIPE_WEBHOOK_SECRET=whsec_...
 **Function** (`supabase/functions/stripe-webhook/index.ts`):
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 import Stripe from "npm:stripe";
 
@@ -382,10 +548,24 @@ export default {
     const sig = req.headers.get("stripe-signature")!;
 
     let event: Stripe.Event;
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+import Stripe from 'npm:stripe'
+
+const stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY')!)
+
+export default {
+  fetch: withSupabase({ auth: 'none' }, async (req, ctx) => {
+    const body = await req.text()
+    const sig = req.headers.get('stripe-signature')!
+
+    let event: Stripe.Event
+>>>>>>> b5d40c2 (feat: add ORM prisa)
     try {
       event = await stripe.webhooks.constructEventAsync(
         body,
         sig,
+<<<<<<< HEAD
         Deno.env.get("STRIPE_WEBHOOK_SECRET")!
       );
     } catch {
@@ -406,6 +586,28 @@ export default {
     return Response.json({ received: true });
   }),
 };
+=======
+        Deno.env.get('STRIPE_WEBHOOK_SECRET')!,
+      )
+    } catch {
+      return Response.json({ error: 'Invalid signature' }, { status: 401 })
+    }
+
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object as Stripe.Checkout.Session
+        await ctx.supabaseAdmin
+          .from('orders')
+          .update({ status: 'paid' })
+          .eq('stripe_session_id', session.id)
+        break
+      }
+    }
+
+    return Response.json({ received: true })
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 ### Migrating legacy Edge Functions
@@ -424,6 +626,7 @@ If you encounter code using `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `D
 Legacy keys will be removed, making this code stop working. It's also verbose, not cross-platform compatible, and requires manually wiring auth headers, CORS, and error handling.
 
 ```ts
+<<<<<<< HEAD
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 Deno.serve(async (req: Request) => {
@@ -437,6 +640,21 @@ Deno.serve(async (req: Request) => {
   const { data } = await supabaseClient.from("orders").select("*");
   return Response.json(data);
 });
+=======
+import { createClient } from 'npm:@supabase/supabase-js@2'
+
+Deno.serve(async (req: Request) => {
+  const supabaseClient = createClient(
+    Deno.env.get('SUPABASE_URL') ?? '',
+    Deno.env.get('SUPABASE_ANON_KEY') ?? '',
+    {
+      global: { headers: { Authorization: req.headers.get('Authorization')! } },
+    },
+  )
+  const { data } = await supabaseClient.from('orders').select('*')
+  return Response.json(data)
+})
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 **After** (new — auth, clients, and CORS handled automatically):
@@ -444,6 +662,7 @@ Deno.serve(async (req: Request) => {
 Uses the latest API keys, works across runtimes (Deno, Node.js, Cloudflare), and handles auth verification, client creation, and CORS in a single line.
 
 ```ts
+<<<<<<< HEAD
 import { withSupabase } from "npm:@supabase/server@1";
 
 export default {
@@ -452,6 +671,16 @@ export default {
     return Response.json(data);
   }),
 };
+=======
+import { withSupabase } from 'npm:@supabase/server@1'
+
+export default {
+  fetch: withSupabase({ auth: 'user' }, async (_req, ctx) => {
+    const { data } = await ctx.supabase.from('orders').select('*')
+    return Response.json(data)
+  }),
+}
+>>>>>>> b5d40c2 (feat: add ORM prisa)
 ```
 
 The migration mapping: `SUPABASE_ANON_KEY` with manual auth header → `auth: 'user'`, `SUPABASE_ANON_KEY` without auth → `auth: 'publishable'`. For `SUPABASE_SERVICE_ROLE_KEY`, it depends on intent: if the legacy code validates the incoming key to protect the endpoint (e.g., `req.headers.get('apikey') === serviceRoleKey`), use `auth: 'secret'`. If it only uses the key to create an admin client for elevated DB access, no specific auth mode is needed — `ctx.supabaseAdmin` is always available regardless of auth mode.
