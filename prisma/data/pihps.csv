@@ -1,0 +1,128 @@
+commodity,unit,date,price
+Beras Kualitas Bawah I,kg,2026-10-30,14950
+Beras Kualitas Bawah I,kg,2026-11-02,14900
+Beras Kualitas Bawah I,kg,2026-11-03,14950
+Beras Kualitas Bawah I,kg,2026-11-04,15000
+Beras Kualitas Bawah I,kg,2026-11-05,15000
+Beras Kualitas Bawah I,kg,2026-11-06,15000
+Beras Kualitas Bawah II,kg,2026-10-30,14800
+Beras Kualitas Bawah II,kg,2026-11-02,14800
+Beras Kualitas Bawah II,kg,2026-11-03,14750
+Beras Kualitas Bawah II,kg,2026-11-04,14800
+Beras Kualitas Bawah II,kg,2026-11-05,14800
+Beras Kualitas Bawah II,kg,2026-11-06,14800
+Beras Kualitas Medium I,kg,2026-10-30,16650
+Beras Kualitas Medium I,kg,2026-11-02,16700
+Beras Kualitas Medium I,kg,2026-11-03,16650
+Beras Kualitas Medium I,kg,2026-11-04,16700
+Beras Kualitas Medium I,kg,2026-11-05,16700
+Beras Kualitas Medium I,kg,2026-11-06,16700
+Beras Kualitas Medium II,kg,2026-10-30,16450
+Beras Kualitas Medium II,kg,2026-11-02,16500
+Beras Kualitas Medium II,kg,2026-11-03,16500
+Beras Kualitas Medium II,kg,2026-11-04,16550
+Beras Kualitas Medium II,kg,2026-11-05,16550
+Beras Kualitas Medium II,kg,2026-11-06,16500
+Beras Kualitas Super I,kg,2026-10-30,18000
+Beras Kualitas Super I,kg,2026-11-02,18050
+Beras Kualitas Super I,kg,2026-11-03,18000
+Beras Kualitas Super I,kg,2026-11-04,18050
+Beras Kualitas Super I,kg,2026-11-05,18000
+Beras Kualitas Super I,kg,2026-11-06,18050
+Beras Kualitas Super II,kg,2026-10-30,17450
+Beras Kualitas Super II,kg,2026-11-02,17500
+Beras Kualitas Super II,kg,2026-11-03,17450
+Beras Kualitas Super II,kg,2026-11-04,17500
+Beras Kualitas Super II,kg,2026-11-05,17450
+Beras Kualitas Super II,kg,2026-11-06,17500
+Daging Ayam Ras Segar,kg,2026-10-30,39000
+Daging Ayam Ras Segar,kg,2026-11-02,39000
+Daging Ayam Ras Segar,kg,2026-11-03,38750
+Daging Ayam Ras Segar,kg,2026-11-04,38850
+Daging Ayam Ras Segar,kg,2026-11-05,38750
+Daging Ayam Ras Segar,kg,2026-11-06,38600
+Daging Sapi Kualitas 1,kg,2026-10-30,152700
+Daging Sapi Kualitas 1,kg,2026-11-02,153350
+Daging Sapi Kualitas 1,kg,2026-11-03,152600
+Daging Sapi Kualitas 1,kg,2026-11-04,152850
+Daging Sapi Kualitas 1,kg,2026-11-05,152700
+Daging Sapi Kualitas 1,kg,2026-11-06,153300
+Daging Sapi Kualitas 2,kg,2026-10-30,143700
+Daging Sapi Kualitas 2,kg,2026-11-02,144450
+Daging Sapi Kualitas 2,kg,2026-11-03,143500
+Daging Sapi Kualitas 2,kg,2026-11-04,144050
+Daging Sapi Kualitas 2,kg,2026-11-05,143600
+Daging Sapi Kualitas 2,kg,2026-11-06,144100
+Telur Ayam Ras Segar,kg,2026-10-30,29350
+Telur Ayam Ras Segar,kg,2026-11-02,29300
+Telur Ayam Ras Segar,kg,2026-11-03,29250
+Telur Ayam Ras Segar,kg,2026-11-04,29250
+Telur Ayam Ras Segar,kg,2026-11-05,29250
+Telur Ayam Ras Segar,kg,2026-11-06,29200
+Bawang Merah Ukuran Sedang,kg,2026-10-30,37100
+Bawang Merah Ukuran Sedang,kg,2026-11-02,37200
+Bawang Merah Ukuran Sedang,kg,2026-11-03,37350
+Bawang Merah Ukuran Sedang,kg,2026-11-04,37450
+Bawang Merah Ukuran Sedang,kg,2026-11-05,37550
+Bawang Merah Ukuran Sedang,kg,2026-11-06,37500
+Bawang Putih Ukuran Sedang,kg,2026-10-30,38250
+Bawang Putih Ukuran Sedang,kg,2026-11-02,38550
+Bawang Putih Ukuran Sedang,kg,2026-11-03,38250
+Bawang Putih Ukuran Sedang,kg,2026-11-04,38550
+Bawang Putih Ukuran Sedang,kg,2026-11-05,38400
+Bawang Putih Ukuran Sedang,kg,2026-11-06,38550
+Cabai Merah Besar,kg,2026-10-30,71600
+Cabai Merah Besar,kg,2026-11-02,70300
+Cabai Merah Besar,kg,2026-11-03,70400
+Cabai Merah Besar,kg,2026-11-04,70250
+Cabai Merah Besar,kg,2026-11-05,70750
+Cabai Merah Besar,kg,2026-11-06,70550
+Cabai Merah Keriting,kg,2026-10-30,83500
+Cabai Merah Keriting,kg,2026-11-02,84400
+Cabai Merah Keriting,kg,2026-11-03,88000
+Cabai Merah Keriting,kg,2026-11-04,87900
+Cabai Merah Keriting,kg,2026-11-05,88450
+Cabai Merah Keriting,kg,2026-11-06,88900
+Cabai Rawit Hijau,kg,2026-10-30,78350
+Cabai Rawit Hijau,kg,2026-11-02,77300
+Cabai Rawit Hijau,kg,2026-11-03,76500
+Cabai Rawit Hijau,kg,2026-11-04,76750
+Cabai Rawit Hijau,kg,2026-11-05,76850
+Cabai Rawit Hijau,kg,2026-11-06,76950
+Cabai Rawit Merah,kg,2026-10-30,96200
+Cabai Rawit Merah,kg,2026-11-02,93650
+Cabai Rawit Merah,kg,2026-11-03,94900
+Cabai Rawit Merah,kg,2026-11-04,96500
+Cabai Rawit Merah,kg,2026-11-05,96400
+Cabai Rawit Merah,kg,2026-11-06,96700
+Minyak Goreng Curah,liter,2026-10-30,20350
+Minyak Goreng Curah,liter,2026-11-02,20350
+Minyak Goreng Curah,liter,2026-11-03,20300
+Minyak Goreng Curah,liter,2026-11-04,20350
+Minyak Goreng Curah,liter,2026-11-05,20400
+Minyak Goreng Curah,liter,2026-11-06,20350
+Minyak Goreng Kemasan Bermerk 1,liter,2026-10-30,24400
+Minyak Goreng Kemasan Bermerk 1,liter,2026-11-02,24450
+Minyak Goreng Kemasan Bermerk 1,liter,2026-11-03,24350
+Minyak Goreng Kemasan Bermerk 1,liter,2026-11-04,24450
+Minyak Goreng Kemasan Bermerk 1,liter,2026-11-05,24350
+Minyak Goreng Kemasan Bermerk 1,liter,2026-11-06,24450
+Minyak Goreng Kemasan Bermerk 2,liter,2026-10-30,23600
+Minyak Goreng Kemasan Bermerk 2,liter,2026-11-02,23700
+Minyak Goreng Kemasan Bermerk 2,liter,2026-11-03,23600
+Minyak Goreng Kemasan Bermerk 2,liter,2026-11-04,23750
+Minyak Goreng Kemasan Bermerk 2,liter,2026-11-05,23600
+Minyak Goreng Kemasan Bermerk 2,liter,2026-11-06,23700
+Gula Pasir Kualitas Premium,kg,2026-10-30,20600
+Gula Pasir Kualitas Premium,kg,2026-11-02,20650
+Gula Pasir Kualitas Premium,kg,2026-11-03,20650
+Gula Pasir Kualitas Premium,kg,2026-11-04,20650
+Gula Pasir Kualitas Premium,kg,2026-11-05,20600
+Gula Pasir Kualitas Premium,kg,2026-11-06,20750
+Gula Pasir Lokal,kg,2026-10-30,19500
+Gula Pasir Lokal,kg,2026-11-02,19600
+Gula Pasir Lokal,kg,2026-11-03,19500
+Gula Pasir Lokal,kg,2026-11-04,19600
+Gula Pasir Lokal,kg,2026-11-05,19500
+Gula Pasir Lokal,kg,2026-11-06,19650
+ 
