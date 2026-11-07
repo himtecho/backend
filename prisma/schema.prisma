@@ -1,0 +1,77 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum MarketType {
+  TRADITIONAL
+  CHEAP_MARKET
+  STORE
+  SUPERMARKET
+}
+
+enum PriceSource {
+  PIHPS     // official city-level reference price
+  SEED      // estimated per-market price (shown as "Estimasi")
+  CITIZEN   // citizen report
+}
+
+model Commodity {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique            // must match names in pihps.csv exactly
+  unit    String                     // "kg", "liter", "butir"
+  iconUrl String?
+  prices  Price[]
+}
+
+model Market {
+  id        Int        @id @default(autoincrement())
+  name      String
+  type      MarketType
+  address   String?
+  latitude  Float
+  longitude Float
+  openHours String?                  // e.g. "05:00-14:00"; null when unknown
+  prices    Price[]
+  events    MarketEvent[]
+
+  @@index([latitude, longitude])     // bounding-box prefilter for nearby search
+  @@index([type])
+}
+
+// One table for city-level reference prices, per-market estimates and citizen reports.
+// marketId = null means a city-level reference price (source = PIHPS).
+model Price {
+  id          Int         @id @default(autoincrement())
+  price       Int                    // integer Rupiah
+  date        DateTime    @db.Date   // price date
+  source      PriceSource
+  createdAt   DateTime    @default(now())  // used for the 72-hour citizen median window
+  commodityId Int
+  marketId    Int?
+  commodity   Commodity   @relation(fields: [commodityId], references: [id], onDelete: Cascade)
+  market      Market?     @relation(fields: [marketId], references: [id], onDelete: Cascade)
+
+  @@index([commodityId, date])                    // history chart, summary
+  @@index([marketId, commodityId, createdAt])     // per-market latest price, citizen median
+  @@index([source])
+}
+
+model MarketEvent {
+  id          Int      @id @default(autoincrement())
+  title       String                 // prefix sample data with "[Contoh]"
+  organizer   String?
+  description String?
+  startAt     DateTime
+  endAt       DateTime
+  marketId    Int
+  market      Market   @relation(fields: [marketId], references: [id], onDelete: Cascade)
+
+  @@index([startAt])
+}
