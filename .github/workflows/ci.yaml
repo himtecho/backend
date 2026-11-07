@@ -7,8 +7,31 @@ on:
     branches: [main]
 
 jobs:
+  up-to-date:
+    name: Cek sudah pull main
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Cek branch up to date dengan main
+        run: |
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "Branch sudah up to date dengan main"
+          else
+            echo "::error::Branch belum up to date dengan main. Jalankan: git pull origin main"
+            exit 1
+          fi
+
   check:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://user:pass@localhost:5432/db
+      DIRECT_URL: postgresql://user:pass@localhost:5432/db
     steps:
       - uses: actions/checkout@v4
 
@@ -20,3 +43,4 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
+      - run: npm test
